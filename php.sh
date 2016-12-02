@@ -14,8 +14,9 @@ name_tar=${name}.tar.gz
 target_dir=/usr/local/php
 
 if [ -d $target_dir ]; then
-    echo "删除${target_dir} ${slash}"
-    rm -rf $target_dir
+    echo "${target_dir}存在 ${slash}"
+    #rm -rf $target_dir
+    mv $target_dir ${target_dir}_bak
 fi
 
 cd /usr/local/src
@@ -70,7 +71,7 @@ cp ${target_dir}/etc/php-fpm.d/www.conf.default ${target_dir}/etc/php-fpm.d/www.
 
 
 # 添加用户
-userdel www
+# userdel www
 groupadd www
 useradd -r -g www -s /bin/false www
 
@@ -78,3 +79,5 @@ useradd -r -g www -s /bin/false www
 #vim php.ini 将date.timezone设置为PRC
 
 echo "安装成功,请自行配置时区(PRC)和用户和用户组(www) ${slash}"
+
+
