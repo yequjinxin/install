@@ -1,12 +1,10 @@
 #!/bin/bash
 
 if [ -z $1 ]; then
-    version=7.0.13
+    version=7.1.8
 else
     version=$1
 fi
-slash='--------------------------------------------------------'
-echo "php ${version} begin install ${slash}"
 
 # 变量
 name=php-${version}
@@ -14,7 +12,7 @@ name_tar=${name}.tar.gz
 target_dir=/usr/local/php
 
 if [ -d $target_dir ]; then
-    echo "${target_dir}存在 ${slash}"
+    echo "${target_dir}存在"
     #rm -rf $target_dir
     mv $target_dir ${target_dir}_bak
 fi
@@ -22,15 +20,16 @@ fi
 cd /usr/local/src
 
 if [ ! -f $name_tar ]; then
-    echo "下载nginx文件 ${slash}"
+    echo "下载php文件"
     wget http://au1.php.net/get/${name_tar}/from/this/mirror -O $name_tar
 fi
 
 if [ ! -f $name_tar ]; then
-    echo "${name_tar} not exists and upload error ${slash}"
+    echo "${name_tar} not exists and upload error"
     exit 1
 fi
 
+echo "php ${version} begin install"
 
 yum update -y
 yum install -y gcc automake autoconf libtool gcc-c++
@@ -40,6 +39,7 @@ yum install -y gd zlib zlib-devel openssl openssl-devel libxml2 libxml2-devel li
 
 
 if [ -d $name ]; then
+    cd $name
     make clean
 else
     tar -zxvf $name_tar
@@ -61,7 +61,9 @@ cd $name
 --with-curl \
 --enable-mbstring \
 --enable-zip \
---enable-fpm
+--enable-fpm \
+--user=wwwroot \
+--group=wwwroot
 
 make && make install
 
@@ -70,14 +72,9 @@ cp ${target_dir}/etc/php-fpm.conf.default ${target_dir}/etc/php-fpm.conf
 cp ${target_dir}/etc/php-fpm.d/www.conf.default ${target_dir}/etc/php-fpm.d/www.conf
 
 
-# 添加用户
-# userdel www
-groupadd www
-useradd -r -g www -s /bin/false www
-
 #user和group设置为www
 #vim php.ini 将date.timezone设置为PRC
 
-echo "安装成功,请自行配置时区(PRC)和用户和用户组(www) ${slash}"
+echo "安装成功,请自行配置时区(PRC)和用户和用户组(www)"
 
 

@@ -39,18 +39,21 @@ yum install -y gcc automake autoconf libtool gcc-c++
 yum install -y gd zlib zlib-devel openssl openssl-devel libxml2 libxml2-devel libjpeg libjpeg-devel libpng libpng-devel freetype freetype-devel libmcrypt libmcrypt-devel bzip2 bzip2-devel curl curl-devel pcre pcre-devel
 
 if [ -d $name ]; then
+    cd $name
     make clean
 else
     tar -zxvf $name_tar
 fi
 
 cd $name
-./configure --prefix=$target_dir
+useradd wwwroot
+./configure --prefix=$target_dir --user=wwwroot --group=wwwroot
 make && make install
 
 rm -rf /usr/local/sbin/nginx
 rm -rf /usr/sbin/nginx
 rm -rf /etc/nginx/nginx.conf
+rm -rf /etc/nginx/mime.types
 
 ln -s ${target_dir}/sbin/nginx /usr/local/sbin/nginx
 ln -s ${target_dir}/sbin/nginx /usr/sbin/nginx
