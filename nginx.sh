@@ -68,6 +68,7 @@ ln -s ${target_dir}/conf /etc/nginx
 #ln -s /usr/local/nginx/conf/mime.types /etc/nginx/mime.types
 
 cd /etc/init.d
+rm -rf nginx
 wget http://doc.ranlau.com/nginx -O nginx
 chmod a+x nginx
 chkconfig --add /etc/init.d/nginx
