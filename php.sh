@@ -10,11 +10,12 @@ fi
 name=php-${version}
 name_tar=${name}.tar.gz
 target_dir=/usr/local/php
+target_dir_bak=/usr/local/php_bak
 
 if [ -d $target_dir ]; then
     echo "${target_dir}存在"
-    #rm -rf $target_dir
-    mv $target_dir ${target_dir}_bak
+    rm -rf $target_dir_bak
+    mv $target_dir $target_dir_bak
 fi
 
 cd /usr/local/src
@@ -43,27 +44,34 @@ if [ -d $name ]; then
     make clean
 else
     tar -zxvf $name_tar
+    cd $name
 fi
 
-cd $name
+# centos6.8不支持--with-fpm-systemd，可以尝试在7以上的系统添加
+# --enable-intl 需要安装ICU yum install -y libicu libicu-devel
 
 ./configure --prefix=$target_dir \
+--enable-fpm \
+--with-fpm-user=wwwroot \
+--with-fpm-group=wwwroot \
 --with-gd \
 --with-freetype-dir \
 --with-jpeg-dir \
 --enable-gd-native-ttf \
 --enable-gd-jis-conv \
 --enable-mysqlnd \
+--with-mysqli=mysqlnd \
 --with-pdo-mysql=mysqlnd \
---with-mysqli \
+--enable-opcache \
 --with-openssl \
 --with-mcrypt \
 --with-curl \
 --enable-mbstring \
 --enable-zip \
---enable-fpm \
---user=wwwroot \
---group=wwwroot
+--with-zlib \
+--enable-sockets \
+--with-gettext
+
 
 make && make install
 
@@ -71,10 +79,9 @@ cp /usr/local/src/${name}/php.ini-development ${target_dir}/lib/php.ini
 cp ${target_dir}/etc/php-fpm.conf.default ${target_dir}/etc/php-fpm.conf
 cp ${target_dir}/etc/php-fpm.d/www.conf.default ${target_dir}/etc/php-fpm.d/www.conf
 
-
 #user和group设置为www
 #vim php.ini 将date.timezone设置为PRC
 
-echo "安装成功,请自行配置时区(PRC)和用户和用户组(www)"
+echo "安装成功,请自行配置时区(PRC)"
 
 

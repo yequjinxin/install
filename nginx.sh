@@ -15,6 +15,7 @@ target_dir_bak=/usr/local/nginx_bak
 
 if [ -d $target_dir ]; then
     echo "{target_dir}存在, 备份${target_dir}"
+    rm -rf $target_dir_bak
     mv $target_dir $target_dir_bak
 fi
 
@@ -43,25 +44,28 @@ if [ -d $name ]; then
     make clean
 else
     tar -zxvf $name_tar
+    cd $name
 fi
 
-cd $name
 useradd wwwroot
 ./configure --prefix=$target_dir --user=wwwroot --group=wwwroot
 make && make install
 
 rm -rf /usr/local/sbin/nginx
 rm -rf /usr/sbin/nginx
-rm -rf /etc/nginx/nginx.conf
-rm -rf /etc/nginx/mime.types
+rm -rf /etc/nginx
+#rm -rf /etc/nginx/nginx.conf
+#rm -rf /etc/nginx/mime.types
 
 ln -s ${target_dir}/sbin/nginx /usr/local/sbin/nginx
 ln -s ${target_dir}/sbin/nginx /usr/sbin/nginx
-if [ ! -d '/etc/nginx' ]; then
-    mkdir /etc/nginx
-fi
-ln -s ${target_dir}/conf/nginx.conf /etc/nginx/nginx.conf
-ln -s /usr/local/nginx/conf/mime.types /etc/nginx/mime.types
+ln -s ${target_dir}/conf /etc/nginx
+
+#if [ ! -d '/etc/nginx' ]; then
+#    mkdir /etc/nginx
+#fi
+#ln -s ${target_dir}/conf/nginx.conf /etc/nginx/nginx.conf
+#ln -s /usr/local/nginx/conf/mime.types /etc/nginx/mime.types
 
 cd /etc/init.d
 wget http://doc.ranlau.com/nginx -O nginx
