@@ -75,7 +75,7 @@ fi
 
 make && make install
 
-cp /usr/local/src/${name}/php.ini-development ${target_dir}/lib/php.ini
+cp /usr/local/src/${name}/php.ini-production ${target_dir}/lib/php.ini
 cp ${target_dir}/etc/php-fpm.conf.default ${target_dir}/etc/php-fpm.conf
 cp ${target_dir}/etc/php-fpm.d/www.conf.default ${target_dir}/etc/php-fpm.d/www.conf
 
