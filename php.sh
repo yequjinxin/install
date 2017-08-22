@@ -79,6 +79,10 @@ cp /usr/local/src/${name}/php.ini-production ${target_dir}/lib/php.ini
 cp ${target_dir}/etc/php-fpm.conf.default ${target_dir}/etc/php-fpm.conf
 cp ${target_dir}/etc/php-fpm.d/www.conf.default ${target_dir}/etc/php-fpm.d/www.conf
 
+ln -s ${target_dir}/bin/php /usr/local/sbin/php
+ln -s ${target_dir}/bin/phpize /usr/local/sbin/phpize
+ln -s ${target_dir}/bin/php-config  /usr/local/sbin/php-config
+
 #user和group设置为www
 #vim php.ini 将date.timezone设置为PRC
 
