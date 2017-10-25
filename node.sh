@@ -16,7 +16,7 @@ fi
 cd /usr/local/src
 if [ ! -f $name_tar ]; then
     echo "下载node文件"
-    wget https://nodejs.org/dist/v6.11.5/node-v6.11.5-linux-x64.tar.xz
+    wget https://nodejs.org/dist/v6.11.5/${name_tar}
 fi
 
 if [ ! -f $name_tar ]; then
@@ -24,7 +24,7 @@ if [ ! -f $name_tar ]; then
     exit 1
 fi
 
-tar -Jxvf node-v6.11.2-linux-x64.tar.xz
+tar -Jxvf $name_tar
 mv node-v6.11.2-linux-x64 ../node
 
 ln -s /usr/local/node/bin/node  /usr/local/sbin/node
