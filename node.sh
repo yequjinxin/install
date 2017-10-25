@@ -25,7 +25,7 @@ if [ ! -f $name_tar ]; then
 fi
 
 tar -Jxvf $name_tar
-mv node-v6.11.2-linux-x64 ../node
+mv $name ../node
 
 ln -s /usr/local/node/bin/node  /usr/local/sbin/node
 ln -s /usr/local/node/bin/npm /usr/local/sbin/npm
