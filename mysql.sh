@@ -1,12 +1,13 @@
 #!/bin/bash
 
 yum install libaio -y
+yum install numactl.x86_64 -y
 
-name_tar='mysql-5.7.16-linux-glibc2.5-x86_64.tar.gz'
+name_tar='mysql-5.7.19-linux-glibc2.12-x86_64.tar.gz'
 cd /usr/local/src
 
 if [ ! -f $name_tar ]; then
-    wget http://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.16-linux-glibc2.5-x86_64.tar.gz
+    wget https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.19-linux-glibc2.12-x86_64.tar.gz
 fi
 rm -rf ../mysql
 mkdir ../mysql
@@ -40,7 +41,7 @@ rm -rf /etc/my.cnf
 #--plugin-dir=/usr/local/mysql/lib/plugin \
 #--log-error=/usr/local/mysql/data/mysql.err
 
-bin/mysqld --user=mysql --initialize
+bin/mysqld --user=mysql --initialize --explicit_defaults_for_timestamp
 support-files/mysql.server start 
 
 

@@ -83,9 +83,7 @@ ln -s ${target_dir}/bin/php /usr/local/sbin/php
 ln -s ${target_dir}/bin/phpize /usr/local/sbin/phpize
 ln -s ${target_dir}/bin/php-config  /usr/local/sbin/php-config
 
-#user和group设置为www
 #vim php.ini 将date.timezone设置为PRC
-
-echo "安装成功,请自行配置时区(PRC)"
+echo "安装成功,请自行配置时区(PRC)，并选择安装redis\swoole\opcache等扩展"
 
 
