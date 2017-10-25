@@ -27,7 +27,11 @@ fi
 tar -Jxvf $name_tar
 mv $name ../node
 
-ln -s /usr/local/node/bin/node  /usr/local/sbin/node
+rm -rf /usr/local/sbin/node
+rm -rf /usr/local/sbin/npm
+rm -rf /usr/local/sbin/cnpm
+
+ln -s /usr/local/node/bin/node /usr/local/sbin/node
 ln -s /usr/local/node/bin/npm /usr/local/sbin/npm
 npm install -g cnpm --registry=https://registry.npm.taobao.org
 ln -s /usr/local/node/bin/cnpm /usr/local/sbin/cnpm
