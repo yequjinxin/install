@@ -2,7 +2,7 @@
 
 # 指定nginx变量名，如果没指定，则用默认版本
 if [ -z $1 ]; then
-    version=1.12.1
+    version=1.12.2
 else
     version=$1
 fi
