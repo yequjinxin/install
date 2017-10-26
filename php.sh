@@ -87,3 +87,6 @@ ln -s ${target_dir}/bin/php-config  /usr/local/sbin/php-config
 echo "安装成功,请自行配置时区(PRC)，并选择安装redis\swoole\opcache等扩展"
 
 
+# 重启php-fpm
+# ps aux|grep php-fpm|grep -v grep|awk '{print $2}' | xargs kill -SIGUSR2
+
