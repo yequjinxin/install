@@ -81,5 +81,10 @@ chmod a+x nginx
 chkconfig --add /etc/init.d/nginx
 chkconfig nginx on
 
-echo "nginx install success"
+# 
+cd ${target_dir}/conf
+mkdir vhosts
+cd vhosts
 
+
+echo "nginx install success"
