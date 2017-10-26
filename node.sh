@@ -30,8 +30,23 @@ mv $name ../node
 rm -rf /usr/local/sbin/node
 rm -rf /usr/local/sbin/npm
 rm -rf /usr/local/sbin/cnpm
+rm -rf /usr/local/sbin/pm2
 
 ln -s /usr/local/node/bin/node /usr/local/sbin/node
 ln -s /usr/local/node/bin/npm /usr/local/sbin/npm
+
+# 安装 cnpm
 npm install -g cnpm --registry=https://registry.npm.taobao.org
 ln -s /usr/local/node/bin/cnpm /usr/local/sbin/cnpm
+
+# 安装pm2
+cnpm install pm2 -g
+ln -s /usr/local/node/bin/pm2 /usr/local/sbin/pm2
+###
+# 启动
+# pm2 start index --log-date-format "YYYY-MM-DD HH:mm:ss Z"
+# 更新
+# pm2 save
+# cnpm install pm2@latest -g
+# pm2 update
+###
