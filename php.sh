@@ -84,7 +84,7 @@ ln -s ${target_dir}/bin/phpize /usr/local/sbin/phpize
 ln -s ${target_dir}/bin/php-config  /usr/local/sbin/php-config
 
 #vim php.ini 将date.timezone设置为PRC
-echo "安装成功,请自行配置时区(PRC)，并选择安装redis\swoole\opcache等扩展"
+echo "安装成功,请自行配置时区(PRC)，并选择安装redis\swoole\opcache等扩展，客户端升级项目需要配置post_max_size和upload_max_filesize参数，开启opcache需要配置相关参数"
 
 
 # 重启php-fpm
