@@ -50,4 +50,14 @@ phpize
 
 
 
+# 扩展安装完成后，配置/usr/local/php/lib/php.ini
+# 1. 修改扩展目录
+# extension_dir = "/usr/local/php/lib/php/extensions/no-debug-non-zts-20160303/"
+# 2. 在文件结尾添加扩展模块
+# [extension]
+# extension=redis.so
+# extension=swoole.so
+# zend_extension=opcache.so
+
+
 
