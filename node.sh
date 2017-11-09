@@ -1,7 +1,7 @@
 #!/bin/bash
 
-name=node-v6.11.5-linux-x64
-name_tar=node-v6.11.5-linux-x64.tar.xz
+name=node-v8.9.1-linux-x64
+name_tar=${name}.tar.xz
 
 target_dir=/usr/local/node
 target_dir_bak=/usr/local/node_bak
@@ -16,7 +16,7 @@ fi
 cd /usr/local/src
 if [ ! -f $name_tar ]; then
     echo "下载node文件"
-    wget https://nodejs.org/dist/v6.11.5/${name_tar}
+    wget https://nodejs.org/dist/v8.9.1/node-v8.9.1-linux-x64.tar.xz
 fi
 
 if [ ! -f $name_tar ]; then
