@@ -22,7 +22,7 @@ cd /usr/local/src
 
 if [ ! -f $name_tar ]; then
     echo "下载php文件"
-    wget http://au1.php.net/get/${name_tar}/from/this/mirror -O $name_tar
+    wget http://am1.php.net/get/${name_tar}/from/this/mirror -O $name_tar
 fi
 
 if [ ! -f $name_tar ]; then
