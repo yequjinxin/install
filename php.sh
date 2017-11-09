@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ -z $1 ]; then
-    version=7.1.10
+    version=7.1.11
 else
     version=$1
 fi
