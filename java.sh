@@ -6,7 +6,7 @@ name=jdk-8u152-linux-x64
 name_tar=${name}.tar.gz
 target_dir=/usr/local/jdk
 target_dir_bak=/usr/local/jdk_bak
-
+download_url=http://download.oracle.com/otn-pub/java/jdk/8u152-b16/aa0333dd3019491ca4f6ddbe78cdb6d0/jdk-8u152-linux-x64.tar.gz?AuthParam=1510286646_ef26a138c86bb5cfc80891604fc78f70
 
 # 文件已经存在，则备份
 if [ -d $target_dir ]; then
@@ -18,7 +18,7 @@ fi
 # 下载
 cd /usr/local/src
 if [ ! -f $name_tar ]; then
-    wget http://download.oracle.com/otn-pub/java/jdk/8u152-b16/aa0333dd3019491ca4f6ddbe78cdb6d0/jdk-8u152-linux-x64.tar.gz?AuthParam=1510284842_a2aa463703a4afe75e7eb42b01f1711f -O $name_tar
+    wget $download_url -O $name_tar
 fi
 
 if [ ! -f $name_tar ]; then
