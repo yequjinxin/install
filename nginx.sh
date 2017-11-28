@@ -54,7 +54,7 @@ else
 fi
 
 useradd wwwroot
-./configure --prefix=$target_dir --user=wwwroot --group=wwwroot
+./configure --prefix=$target_dir --user=wwwroot --group=wwwroot --with-stream
 make && make install
 
 rm -rf /usr/local/sbin/nginx
